@@ -3,6 +3,7 @@ import * as graphqlHTTP from 'express-graphql';
 import * as cors from 'cors';
 import * as compression from 'compression';
 import * as helmet from 'helmet';
+import * as path from 'path';
 
 import db from './models';
 import schema from './graphql/schema';
@@ -60,6 +61,14 @@ class App {
         context: req["context"]
       }))
     );
+
+    //DEVELOPER NOTES PAGE
+    this.express.get('/about', function (req, res, next) {
+      res.sendFile(path.join(__dirname+'/about.html'));
+    });
+    this.express.get('/', function (req, res, next) {
+      res.sendFile(path.join(__dirname+'/help.html'));
+    });
   }
 }
 

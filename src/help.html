@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>GraphQL+Postgres - API GUIDE</title>
+    </head>
+    <body>
+      <div style="font-family: monospace">
+        <h1>GraphQL+Postgres API GUIDE</h1>
+        <ul>
+          <li><strong>GET /</strong> -> API guide</li>
+          <li><strong>GET /about</strong> -> Dev notes</li>
+          <li><strong>GET /graphql</strong> -> GraphiQL interface with Docs (limited to operations without JWT)</li>
+          <li><strong>POST /graphql</strong> -> GraphQL syntax queries and mutations</li>
+          <ul>
+            <li><strong>Mutation createToken</strong>:
+              <ul>
+                <li>POST /graphql?variables={"email": "email@email.com", "password": "1234"}</li>
+                <li>body(application/graphql): <em>mutation createNewToken($email: String!, $password: String!) { createToken(email: $email, password: $password) { token } }</em></li>
+              </ul>
+            </li>
+            <li><strong>Query users</strong>:
+              <ul>
+                <li>POST /graphql?variables={"first": 15, "offset": 0}</li>
+                <li>body(application/graphql): <em>query getUsersList($first: Int, $offset: Int) { users(first: $first, offset: $offset) { id \n name \n email \n createdAt \n posts { id \n title \n createdAt } } }</em></li>
+              </ul>
+            </li>
+            <li><strong>Mutation deletePost</strong>:
+              <ul>
+                <li>POST /graphql?variables={"id": 1}</li>
+                <li>body(application/graphql): <em>mutation deleteExistingPost($id: ID!) { deletePost(id: $id) }</em></li>
+                <li>**JWT with authorization required</li>
+              </ul>
+            </li>
+            <li>(for reference see GraphiQL Docs)</li>
+          </ul>
+          <li><strong>GET /&lt;anything_else></strong> -> Cannot GET /&lt;anything_else></li>
+        </ul>
+      </div>
+    </body>
+</html>

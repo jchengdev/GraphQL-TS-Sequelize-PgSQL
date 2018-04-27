@@ -14,7 +14,7 @@ gulp.task('scripts', ['static'], () => {
 
 gulp.task('static', ['clean'], () => {
   return gulp
-    .src(['src/**/*.json'])
+    .src(['src/**/*.json', 'src/**/*.html'])
     .pipe(gulp.dest('dist'));
 });
 
@@ -27,7 +27,7 @@ gulp.task('clean', () => {
 gulp.task('build', ['clean', 'static', 'scripts']);
 
 gulp.task('watch', ['build'], () => {
-  return gulp.watch(['src/**/*.ts', 'src/**/*.json'], ['build']);
+  return gulp.watch(['src/**/*.ts', 'src/**/*.json', 'src/**/*.html'], ['build']);
 });
 
 gulp.task('default', ['watch']);
