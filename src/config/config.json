@@ -1,0 +1,33 @@
+{
+  "development": {
+    "username": "graphql",
+    "password": "pass",
+    "database": "graphql-dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "graphql",
+    "password": "pass",
+    "database": "graphql-test",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "production": {
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": true
+    },
+    "logging": false
+  },
+  "pipelines": {
+    "username": "root",
+    "password": "let_me_in",
+    "database": "pipelines",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql",
+    "logging": false
+  }
+}
