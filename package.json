@@ -37,6 +37,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/eslint-parser": "^7.13.10",
     "@types/bcryptjs": "2.4.1",
     "@types/chai": "4.0.4",
     "@types/chai-http": "3.0.3",
@@ -51,6 +53,8 @@
     "@types/mocha": "2.2.44",
     "@types/node": "8.0.34",
     "@types/sequelize": "4.0.76",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
     "chai": "4.1.2",
     "chai-http": "^4.3.0",
     "eslint": "^7.22.0",
@@ -64,6 +68,7 @@
     "mocha": "^5.2.0",
     "nodemon": "^1.19.4",
     "nyc": "^15.1.0",
+    "prettier": "^2.2.1",
     "ts-node": "^6.0.1",
     "typescript": "^2.8.3"
   },
