@@ -9,7 +9,7 @@
     "prod-config": "NODE_ENV=production PORT=8080",
     "prod-start": "node ./node_modules/.bin/pm2-runtime dist/index.js -i 4",
     "start": "npm run build && npm run prod-config && npm run prod-start",
-    "dev": "node_modules/.bin/nodemon.cmd --delay 5 dist/index",
+    "dev": "node_modules/.bin/nodemon --delay 5 dist/index",
     "gulp": "node_modules/.bin/gulp",
     "test": "mocha",
     "pipelines": "NODE_ENV=pipelines JWT_SECRET=jwt_pipelines mocha",
