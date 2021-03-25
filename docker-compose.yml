@@ -2,7 +2,7 @@ version: '2.4'
 services:
   db:
     container_name: 'graphql-dev'
-    image: 'postgres:9-alpine'
+    image: 'postgres:10'
     ports:
       - '5432:5432'
     environment:
@@ -14,3 +14,26 @@ services:
     image: adminer
     ports:
       - 5480:8080
+
+  graphql:
+    container_name: 'graphql-api'
+    image: 'jchengdeveng/graphql-api'
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+      args:
+        CREATED_DATE: '$BUILD_DATE'
+        SOURCE_COMMIT: '$COMMIT'
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/node/app
+      - /node/node_modules
+    environment:
+      - NODE_VERSION=14.16.0
+      - NODE_ENV=development
+      - DEBUG=*,-request:*
+      - DATABASE_URL=postgres://graphql:pass@db:5432/graphql-dev
+      - JWT_SECRET=some-key-to-use
+      - PORT=8080
