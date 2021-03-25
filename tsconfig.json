@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "lib": ["esnext"],
     "target": "es6",
     "module": "commonjs"
@@ -7,6 +9,4 @@
   "compileOnSave": false,
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"],
-  "experimentalDecorators": true,
-  "emitDecoratorMetadata": true
 }
