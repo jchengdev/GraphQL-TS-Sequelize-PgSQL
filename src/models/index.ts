@@ -15,7 +15,11 @@ if (!db) {
   const operatorsAliases = {
     $in: Sequelize.Op.in //ENABLES DATABASE QUERIES WITH OPERATORS (e.g. search by array(id))
   };
-  config = Object.assign({operatorsAliases}, config);
+  config = Object.assign({
+    operatorsAliases,
+    host: config["host"] || 'localhost',
+    dialect: config["dialect"] || 'postgres'
+  }, config);
   
   let args: string[] = (env !== 'production') ? [ config["database"], config["username"], config["password"] ]
                                               : [ process.env.DATABASE_URL ];
@@ -32,15 +36,15 @@ if (!db) {
       const model = sequelize.import(path.join(__dirname, file));
       db[model["name"]] = model;
     });
-
+  
   Object.keys(db).forEach((modelName: string) => {
     if(db[modelName].associate) {
       db[modelName].associate(db);
     }
   });
-
+  
   db["sequelize"] = sequelize;
-
+  
 }
 
 export default <DbConnection>db;
