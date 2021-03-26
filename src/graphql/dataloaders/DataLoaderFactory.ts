@@ -1,11 +1,9 @@
-import * as DataLoader from 'dataloader';
+const DataLoader = require('dataloader');
 
 import { DbConnection } from '../../interfaces/DbConnectionInterface';
 import { DataLoaders } from '../../interfaces/DataLoadersInterface';
 import { PostLoader } from './PostLoader';
 import { UserLoader } from './UserLoader';
-import { PostInstance } from '../../models/post.model';
-import { UserInstance } from '../../models/user.model';
 import { RequestedFields } from '../ast/RequestedFields';
 import { DataLoaderParam } from '../../interfaces/DataLoaderParamInterface';
 
@@ -18,13 +16,13 @@ export class DataLoaderFactory {
 
   getLoaders(): DataLoaders {
     return {
-      postLoader: new DataLoader<DataLoaderParam<number>, PostInstance>(
+      postLoader: new DataLoader(
         (params: DataLoaderParam<number>[]) => PostLoader.batchPosts(this.db.Post, params, this.requestedFields),
-        // { cacheKeyFn: (param: DataLoaderParam<number[]>) => param["key"] } // ! unknown issue
+        { cacheKeyFn: (param: DataLoaderParam<number[]>) => param["key"] }
       ),
-      userLoader: new DataLoader<DataLoaderParam<number>, UserInstance>(
+      userLoader: new DataLoader(
         (params: DataLoaderParam<number>[]) => UserLoader.batchUsers(this.db.User, params, this.requestedFields),
-        // { cacheKeyFn: (param: DataLoaderParam<number[]>) => param["key"] } // ! unknown issue
+        { cacheKeyFn: (param: DataLoaderParam<number[]>) => param["key"] }
       )
     };
   }

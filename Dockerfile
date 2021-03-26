@@ -22,7 +22,7 @@ RUN npm config list \
   && npm cache clean --force
 
 FROM base as dev 
-ENV NODE_ENV=development 
+ENV NODE_ENV=docker-dev 
 ENV PATH=/node/node_modules/.bin:$PATH 
 WORKDIR /node 
 RUN npm install --only=development 

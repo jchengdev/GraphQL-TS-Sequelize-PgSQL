@@ -3,6 +3,13 @@
     "username": "graphql",
     "password": "pass",
     "database": "graphql-dev",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "docker-dev": {
+    "username": "graphql",
+    "password": "pass",
+    "database": "graphql-dev",
     "host": "db",
     "dialect": "postgres"
   },
