@@ -1,8 +1,8 @@
-import * as express from 'express';
+import express = require('express');
 import { graphqlHTTP } from 'express-graphql';
-import * as cors from 'cors';
-import * as compression from 'compression';
-import * as helmet from 'helmet';
+import cors = require('cors');
+import compression = require('compression');
+import helmet = require('helmet');
 import * as path from 'path';
 
 import db from './db';

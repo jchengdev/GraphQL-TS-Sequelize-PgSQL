@@ -9,7 +9,7 @@ export class UserLoader {
 
     return Promise.resolve(
       User.findAll({
-        where: { id: {$in: ids}},
+        where: { id: [...ids]},
         attributes: requestedFields.getFields(params[0]["info"], {keep:['id'], exclude:['posts']})
       })
     );

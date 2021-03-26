@@ -12,9 +12,6 @@ if (!db) {
   db = {};
 
   const defaultConfig = {
-    operatorsAliases: {
-      // $in: Sequelize.Op.in //ENABLES DATABASE QUERIES WITH OPERATORS (e.g. search by array(id))
-    },
     models: [__dirname + '/models'],
     modelMatch: (filename, member) => {
       return (
