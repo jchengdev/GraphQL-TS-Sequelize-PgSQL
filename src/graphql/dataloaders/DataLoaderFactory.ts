@@ -4,8 +4,8 @@ import { DbConnection } from '../../interfaces/DbConnectionInterface';
 import { DataLoaders } from '../../interfaces/DataLoadersInterface';
 import { PostLoader } from './PostLoader';
 import { UserLoader } from './UserLoader';
-import { PostInstance } from '../../models/PostModel';
-import { UserInstance } from '../../models/UserModel';
+import { PostInstance } from '../../models/post.model';
+import { UserInstance } from '../../models/user.model';
 import { RequestedFields } from '../ast/RequestedFields';
 import { DataLoaderParam } from '../../interfaces/DataLoaderParamInterface';
 
