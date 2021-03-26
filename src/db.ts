@@ -5,7 +5,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { DbConnection } from './interfaces/DbConnectionInterface';
 
 const env: string = process.env.NODE_ENV || 'development';
-let config = require(path.resolve(`${__dirname}./../config/config.json`))[env];
+let config = require(path.resolve(`${__dirname}/config/config.json`))[env];
 let db: Object | null = null;
 
 if (!db) {

@@ -11,8 +11,8 @@ import {
   ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
-import { Post } from './post.model';
-import { User } from './user.model';
+import Post from './post.model';
+import User from './user.model';
 
 export interface CommentAttributes {
   id?: number;
@@ -31,7 +31,7 @@ export type CommentModel = typeof Comment;
   modelName: 'Comment',
   tableName: 'comments',
 })
-export class Comment extends Model<Comment> {
+export default class Comment extends Model<Comment> {
   @PrimaryKey
   @AutoIncrement
   @AllowNull(false)

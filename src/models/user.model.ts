@@ -35,7 +35,7 @@ export type UserModel = typeof User;
   modelName: 'User',
   tableName: 'users',
 })
-export class User extends Model<User> {
+export default class User extends Model<User> {
   @PrimaryKey
   @AutoIncrement
   @AllowNull(false)

@@ -11,7 +11,7 @@ import {
   ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
-import { User } from './user.model';
+import User from './user.model';
 
 export interface PostAttributes {
   id?: number;
@@ -31,7 +31,7 @@ export type PostModel = typeof Post;
   modelName: 'Post',
   tableName: 'posts',
 })
-export class Post extends Model<Post> {
+export default class Post extends Model<Post> {
   @PrimaryKey
   @AutoIncrement
   @AllowNull(false)
