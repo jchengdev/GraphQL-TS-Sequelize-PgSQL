@@ -10,14 +10,14 @@
     "username": "graphql",
     "password": "pass",
     "database": "graphql-dev",
-    "host": "db",
+    "host": "db-docker",
     "dialect": "postgres"
   },
   "test": {
     "username": "graphql",
     "password": "pass",
     "database": "graphql-test",
-    "host": "db",
+    "host": "localhost",
     "dialect": "postgres",
     "logging": false
   },

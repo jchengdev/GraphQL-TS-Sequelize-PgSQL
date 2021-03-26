@@ -1,6 +1,6 @@
 version: '2.4'
 services:
-  db:
+  db-docker:
     container_name: 'graphql-dev'
     image: 'postgres:10'
     ports:
@@ -32,7 +32,7 @@ services:
       - /node/node_modules
     environment:
       - NODE_VERSION=14.16.0
-      - NODE_ENV=development
+      - NODE_ENV=docker-env
       - DEBUG=*,-request:*
       - DATABASE_URL=postgres://graphql:pass@db:5432/graphql-dev # ignored in db.ts
       - JWT_SECRET=some-key-to-use
