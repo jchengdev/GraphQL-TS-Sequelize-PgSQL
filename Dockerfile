@@ -27,7 +27,7 @@ ENV PATH=/node/node_modules/.bin:$PATH
 WORKDIR /node 
 RUN npm install --only=development 
 WORKDIR /node/app 
-CMD ["nodemon", "--delay 5", "./dist/index.js"]
+CMD ["nodemon", "--delay", "5", "./dist/index.js"]
 
 FROM base as prod
 RUN mkdir /node/app && chown -R node:node /node/app
