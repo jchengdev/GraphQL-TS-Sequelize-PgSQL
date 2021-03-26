@@ -1,4 +1,4 @@
-import { UserModel, UserInstance } from '../../models/UserModel';
+import { UserModel, UserInstance } from '../../models/user.model';
 import { DataLoaderParam } from '../../interfaces/DataLoaderParamInterface';
 import { RequestedFields } from '../ast/RequestedFields';
 

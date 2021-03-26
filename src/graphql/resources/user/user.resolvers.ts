@@ -2,7 +2,7 @@ import { GraphQLResolveInfo } from 'graphql';
 import { Transaction } from 'sequelize';
 
 import { DbConnection } from '../../../interfaces/DbConnectionInterface';
-import { UserInstance } from '../../../models/UserModel';
+import { UserInstance } from '../../../models/user.model';
 import { handleError, throwError } from '../../../utils/utils';
 import { AuthUser } from '../../../interfaces/AuthUserInterface';
 import { compose } from '../../composable/composable.resolver';
@@ -37,7 +37,7 @@ export const userResolvers = {
     user: (parent, {id}, {db, requestedFields}: {db: DbConnection, requestedFields: RequestedFields}, info: GraphQLResolveInfo) => {
       id = parseInt(id);
       return db.User
-        .findById(id, {
+        .findByPk(id, {
           attributes: requestedFields.getFields(info, {keep:['id'], exclude:['posts']})
         })
         .then((user: UserInstance) => {
@@ -48,7 +48,7 @@ export const userResolvers = {
     },
     currentUser: compose(...authResolvers)((parent, args, {db, authUser, requestedFields}: {db: DbConnection, authUser: AuthUser, requestedFields: RequestedFields}, info: GraphQLResolveInfo) => {
       return db.User
-          .findById(authUser["id"], {
+          .findByPk(authUser["id"], {
             attributes: requestedFields.getFields(info, {keep:['id'], exclude:['posts']})
           })
           .then((user: UserInstance) => {
@@ -70,7 +70,7 @@ export const userResolvers = {
     updateUser: compose(...authResolvers)((parent, {input}, {db, authUser}: {db: DbConnection, authUser: AuthUser}, info: GraphQLResolveInfo) => {
       return db.sequelize.transaction((t: Transaction) => {
         return db.User
-          .findById(authUser["id"])
+          .findByPk(authUser["id"])
           .then((user: UserInstance) => {
             throwError(!user, `User with id ${authUser["id"]} not found!`);
             return user.update(input, {transaction: t});
@@ -81,7 +81,7 @@ export const userResolvers = {
     updateUserPassword: compose(...authResolvers)((parent, {input}, {db, authUser}: {db: DbConnection, authUser: AuthUser}, info: GraphQLResolveInfo) => {
       return db.sequelize.transaction((t: Transaction) => {
         return db.User
-          .findById(authUser["id"])
+          .findByPk(authUser["id"])
           .then((user: UserInstance) => {
             throwError(!user, `User with id ${authUser["id"]} not found!`);
             return user.update(input, {transaction: t})
@@ -93,11 +93,11 @@ export const userResolvers = {
     deleteUser: compose(...authResolvers)((parent, args, {db, authUser}: {db: DbConnection, authUser: AuthUser}, info: GraphQLResolveInfo) => {
       return db.sequelize.transaction((t: Transaction) => {
         return db.User
-          .findById(authUser["id"])
+          .findByPk(authUser["id"])
           .then((user: UserInstance) => {
             if(!user) throw new Error(`User with id ${authUser["id"]} not found!`);
             return user.destroy({transaction: t})
-              .then(user => !!user);
+              // .then(user => !!user); // sequelize changes
           });
       })
       .catch(handleError);

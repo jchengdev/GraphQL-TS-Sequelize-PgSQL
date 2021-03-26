@@ -1,7 +1,7 @@
 import * as DataLoader from 'dataloader';
 
-import { PostInstance } from '../models/PostModel';
-import { UserInstance } from '../models/UserModel';
+import { PostInstance } from '../models/post.model';
+import { UserInstance } from '../models/user.model';
 import { DataLoaderParam } from './DataLoaderParamInterface';
 
 export interface DataLoaders {

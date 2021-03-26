@@ -1,11 +1,11 @@
 import * as express from 'express';
-import * as graphqlHTTP from 'express-graphql';
+import { graphqlHTTP } from 'express-graphql';
 import * as cors from 'cors';
 import * as compression from 'compression';
 import * as helmet from 'helmet';
 import * as path from 'path';
 
-import db from './models';
+import db from './db';
 import schema from './graphql/schema';
 import { extractJwtMiddleware } from './middlewares/extract-jwt.middleware';
 import { DataLoaderFactory } from './graphql/dataloaders/DataLoaderFactory';

@@ -15,11 +15,27 @@ import {
 } from 'sequelize-typescript';
 import { genSaltSync, hashSync, compareSync } from 'bcryptjs';
 
+export interface UserAttributes {
+  id?: number;
+  name?: string;
+  email?: string;
+  password?: string;
+  photo?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface UserInstance extends User {
+  isPassword?(encodedPassword: string, password: string): boolean;
+};
+
+export type UserModel = typeof User;
+
 @Table({
   modelName: 'User',
   tableName: 'users',
 })
-export default class User extends Model<User> {
+export class User extends Model<User> {
   @PrimaryKey
   @AutoIncrement
   @AllowNull(false)
@@ -69,11 +85,8 @@ export default class User extends Model<User> {
 }
 
 Object.defineProperty(User.prototype, 'isPassword', {
-  value: (
-    encodedPassword: string,
-    password: string
-  ): boolean => {
+  value: (encodedPassword: string, password: string): boolean => {
     return compareSync(password, encodedPassword);
   },
-  enumerable: false
+  enumerable: false,
 });

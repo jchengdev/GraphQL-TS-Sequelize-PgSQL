@@ -8,15 +8,30 @@ import {
   DataType,
   CreatedAt,
   UpdatedAt,
+  ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
-import User from './user.model';
+import { User } from './user.model';
+
+export interface PostAttributes {
+  id?: number;
+  title?: string;
+  content?: string;
+  photo?: string;
+  author?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface PostInstance extends Post {}
+
+export type PostModel = typeof Post;
 
 @Table({
   modelName: 'Post',
   tableName: 'posts',
 })
-export default class Post extends Model<Post> {
+export class Post extends Model<Post> {
   @PrimaryKey
   @AutoIncrement
   @AllowNull(false)
@@ -43,6 +58,10 @@ export default class Post extends Model<Post> {
   @Column
   updatedAt: Date;
 
+  @ForeignKey(() => User)
+  @Column
+  authorId: number
+
   @BelongsTo(() => User, 'id')
-  author: User;
+  author: number;
 }

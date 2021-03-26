@@ -2,7 +2,7 @@ import { GraphQLResolveInfo } from 'graphql';
 import { Transaction } from 'sequelize';
 
 import { DbConnection } from '../../../interfaces/DbConnectionInterface';
-import { CommentInstance } from '../../../models/CommentModel';
+import { CommentInstance } from '../../../models/comment.model';
 import { handleError, throwError } from '../../../utils/utils';
 import { AuthUser } from '../../../interfaces/AuthUserInterface';
 import { compose } from '../../composable/composable.resolver';
@@ -53,10 +53,10 @@ export const commentResolvers = {
       id = parseInt(id);
       return db.sequelize.transaction((t: Transaction) => {
         return db.Comment
-          .findById(id)
+          .findByPk(id)
           .then((comment: CommentInstance) => {
             throwError(!comment, `Comment with id ${id} not found!`);
-            throwError(comment.get('user') !== authUser["id"], `Unauthorized! You can only edit comments by yourself!`);
+            throwError(comment.get('userId') !== authUser["id"], `Unauthorized! You can only edit comments by yourself!`);
             input["user"] = authUser["id"];
             return comment.update(input, {transaction: t});
           });
@@ -67,12 +67,12 @@ export const commentResolvers = {
       id = parseInt(id);
       return db.sequelize.transaction((t: Transaction) => {
         return db.Comment
-          .findById(id)
+          .findByPk(id)
           .then((comment: CommentInstance) => {
             throwError(!comment, `Comment with id ${id} not found!`);
-            throwError(comment.get('user') !== authUser["id"], `Unauthorized! You can only delete comments by yourself!`);
+            throwError(comment.get('userId') !== authUser["id"], `Unauthorized! You can only delete comments by yourself!`);
             return comment.destroy({transaction: t})
-              .then(comment => !!comment);
+              // .then(comment => !!comment); // sequelize changes
           });
       })
       .catch(handleError);

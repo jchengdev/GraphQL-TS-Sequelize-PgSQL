@@ -20,11 +20,11 @@ export class DataLoaderFactory {
     return {
       postLoader: new DataLoader<DataLoaderParam<number>, PostInstance>(
         (params: DataLoaderParam<number>[]) => PostLoader.batchPosts(this.db.Post, params, this.requestedFields),
-        { cacheKeyFn: (param: DataLoaderParam<number[]>) => param["key"] }
+        // { cacheKeyFn: (param: DataLoaderParam<number[]>) => param["key"] } // ! unknown issue
       ),
       userLoader: new DataLoader<DataLoaderParam<number>, UserInstance>(
         (params: DataLoaderParam<number>[]) => UserLoader.batchUsers(this.db.User, params, this.requestedFields),
-        { cacheKeyFn: (param: DataLoaderParam<number[]>) => param["key"] }
+        // { cacheKeyFn: (param: DataLoaderParam<number[]>) => param["key"] } // ! unknown issue
       )
     };
   }

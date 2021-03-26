@@ -2,8 +2,8 @@ import { RequestHandler, Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
 
 import { JWT_SECRET } from '../utils/utils';
-import db from './../models';
-import { UserInstance } from '../models/UserModel';
+import db from '../db';
+import { UserInstance } from '../models/user.model';
 
 export const extractJwtMiddleware = (): RequestHandler => {
   return (req: Request, res: Response, next: NextFunction): void => {
@@ -18,7 +18,7 @@ export const extractJwtMiddleware = (): RequestHandler => {
       if(err) return next();
       
       db.User
-        .findById(decoded.sub, {
+        .findByPk(decoded.sub, {
           attributes: ['id', 'email']
         })
         .then((user: UserInstance) => {

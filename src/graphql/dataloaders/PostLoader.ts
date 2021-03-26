@@ -1,4 +1,4 @@
-import { PostModel, PostInstance } from '../../models/PostModel';
+import { PostModel, PostInstance } from '../../models/post.model';
 import { DataLoaderParam } from '../../interfaces/DataLoaderParamInterface';
 import { RequestedFields } from '../ast/RequestedFields';
 

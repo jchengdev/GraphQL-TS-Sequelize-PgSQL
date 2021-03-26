@@ -1,12 +1,17 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "lib": ["esnext"],
     "target": "es6",
-    "module": "commonjs"
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "sourceMap": false,
+    "declaration": false
   },
-  "compileOnSave": false,
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }
