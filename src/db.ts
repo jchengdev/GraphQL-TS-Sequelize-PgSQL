@@ -6,7 +6,8 @@ import { DbConnection } from './interfaces/DbConnectionInterface';
 
 const env: string = process.env.NODE_ENV || 'development';
 const DB_URL: string =
-  process.env.DATABASE_URL || 'postgres://graphql:pass@db-docker:5432/graphql-dev';
+  process.env.DATABASE_URL ||
+  'postgres://graphql:pass@db-docker:5432/graphql-dev';
 let config = require(path.resolve(`${__dirname}/config/config.json`))[env];
 let db: Object | null = null;
 
@@ -33,7 +34,12 @@ if (!db) {
         };
 
   // console.log(`DB CONFIG: ${JSON.stringify(config)}`);
-  const sequelize: Sequelize = new Sequelize({ ...config });
+  const sequelize: Sequelize = new Sequelize(
+    config['database'],
+    config['username'],
+    config['password'],
+    { ...config }
+  );
   db['sequelize'] = sequelize;
 }
 
