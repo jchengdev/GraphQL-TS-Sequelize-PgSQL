@@ -12,4 +12,3 @@ Original app (locked in heroku-16 stack, without Docker): https://graphql-postgr
 - production image without PM2, without automatic TS build (via `gulp-typescript`)
 - iGraphQL interface broken
 - `/graphql?{params}` routes are processing, but data layer corrupted (need more investigation)
-- local cross-container (docker-compose) connectivity also broken

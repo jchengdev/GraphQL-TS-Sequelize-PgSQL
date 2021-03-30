@@ -32,6 +32,7 @@ if (!db) {
           ...config,
         };
 
+  // console.log(`DB CONFIG: ${JSON.stringify(config)}`);
   const sequelize: Sequelize = new Sequelize({ ...config });
   db['sequelize'] = sequelize;
 }
