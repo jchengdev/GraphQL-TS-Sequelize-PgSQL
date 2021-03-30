@@ -32,7 +32,7 @@ services:
       - /node/node_modules
     environment:
       - NODE_VERSION=14.16.0
-      - NODE_ENV=docker-env
+      - NODE_ENV=docker-dev
       - DEBUG=*,-request:*
       - DATABASE_URL=postgres://graphql:pass@db-docker:5432/graphql-dev # ignored in db.ts
       - JWT_SECRET=some-key-to-use
