@@ -36,7 +36,7 @@ if (!db) {
   console.log(`DB CONFIG: ${JSON.stringify(config)}`);
   const sequelize: Sequelize = new Sequelize(
     config['database'],
-    config['username'],
+    config['username'] || config['user'], // workaround for parse-database-url
     config['password'],
     { ...config }
   );
