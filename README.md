@@ -6,6 +6,7 @@ Original app (locked in heroku-16 stack, without Docker): https://graphql-postgr
 
 ## Ignore List
 
+- `npm run clusters` and `npm run prod-start` (PM2 removed)
 - `npm run test` (no output, but `npm run coverage` works)
 - `npm run pipelines` (not tested, should also have issues)
 - production image without PM2, without automatic TS build (via `gulp-typescript`)
