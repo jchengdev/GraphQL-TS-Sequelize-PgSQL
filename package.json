@@ -54,7 +54,7 @@
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-typescript": "^4.0.2",
-    "mocha": "^8.3.2",
+    "mocha": "^10.1.0",
     "nodemon": "^2.0.7",
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
