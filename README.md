@@ -2,7 +2,7 @@
 
 This project is quite outdated (2018), just some (not-so-)minor fixes to make it work with Gulp and Docker. Updating Sequelize v4 -> v6 messed up `index.ts` (now `db.ts`) and models definitions, may still find bad workarounds.
 
-Original app (locked in heroku-16 stack, without Docker): https://graphql-postgres-app.herokuapp.com
+Original deployment in Heroku deactivated (no more free Dynos): https://graphql-postgres-app.herokuapp.com
 
 ## Ignore List
 
